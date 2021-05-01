@@ -1,0 +1,47 @@
+{
+    "name": "c10d/craft-hcaptcha",
+    "description": "Integrate hCaptcha validation into your forms.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "craft-hcaptcha",
+        "hcaptcha"
+    ],
+    "support": {
+        "docs": "https://github.com/c10d-dev/craft-hcaptcha/blob/master/README.md",
+        "issues": "https://github.com/c10d-dev/craft-hcaptcha/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cédric Givord",
+            "homepage": "https://c10d.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.2 || ^8.0",
+        "craftcms/cms": "^3.4",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+          "c10d\\crafthcaptcha\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Craft hCAPTCHA",
+        "handle": "craft-hcaptcha",
+        "developer": "Cédric Givord",
+        "developerUrl": "https://c10d.dev",
+        "documentationUrl": "https://github.com/c10d-dev/craft-hcaptcha/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/c10d-dev/craft-hcaptcha/master/CHANGELOG.md",
+        "components": {
+            "hcaptcha": "c10d\\crafthcaptcha\\services\\HcaptchaService"
+        },
+        "class": "c10d\\crafthcaptcha\\CraftHcaptcha"
+    }
+}

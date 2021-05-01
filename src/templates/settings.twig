@@ -1,0 +1,84 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * craft-hcaptcha plugin for Craft CMS 3.x
+ *
+ * craft-hcaptcha Settings.twig
+ *
+ * @author    Cédric Givord
+ * @copyright Copyright (c) Cédric Givord
+ * @link      https://c10d.dev
+ * @package   CraftHcaptcha
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{{ forms.autosuggestField({
+    label: 'Site Key'|t('craft-hcaptcha'),
+    instructions: 'Enter your hCAPTCHA site key.'|t('craft-hcaptcha'),
+    id: 'siteKey',
+    name: 'siteKey',
+    value: settings['siteKey'],
+    required: true,
+    suggestEnvVars: true
+  })
+}}
+
+{{ forms.autosuggestField({
+    label: 'Secret Key'|t('craft-hcaptcha'),
+    instructions: 'Enter your hCAPTCHA secret key.'|t('craft-hcaptcha'),
+    id: 'secretKey',
+    name: 'secretKey',
+    value: settings['secretKey'],
+    required: true,
+    suggestEnvVars: true
+  })
+}}
+
+{{ forms.selectField({
+    label: 'Theme'|t('craft-hcaptcha'),
+    instructions: 'Enter your hCAPTCHA theme preference.'|t('craft-hcaptcha'),
+    id: 'theme',
+    name: 'theme',
+    value: settings['theme'],
+    options: [
+        { value: '', label: '(Default)'|t('craft-hcaptcha') },
+        { value: 'light', label: 'Light'|t('craft-hcaptcha') },
+        { value: 'dark', label: 'Dark'|t('craft-hcaptcha') },
+    ]
+}) }}
+
+{{ forms.selectField({
+    label: 'Size'|t('craft-hcaptcha'),
+    instructions: 'Enter your hCAPTCHA size preference.'|t('craft-hcaptcha'),
+    id: 'size',
+    name: 'size',
+    value: settings['size'],
+    options: [
+        { value: '', label: '(Default)'|t('craft-hcaptcha') },
+        { value: 'normal', label: 'Normal'|t('craft-hcaptcha') },
+        { value: 'compact', label: 'Compact'|t('craft-hcaptcha') },
+    ]
+}) }}
+
+<hr>
+
+{{ forms.lightswitchField({
+    label: 'Validate contact forms?'|t('craft-hcaptcha'),
+    instructions: 'Enable to automatically validate hCAPTCHAs when using the official [Craft CMS contact form plugin](https://github.com/craftcms/contact-form).'|t('craft-hcaptcha'),
+    id: 'validateContactForm',
+    name: 'validateContactForm',
+    on: settings['validateContactForm']
+  })
+}}
+
+{{ forms.lightswitchField({
+    label: 'Validate users registration?'|t('craft-hcaptcha'),
+    instructions: 'Enable to automatically validate hCAPTCHAs when using public users registration.'|t('craft-hcaptcha'),
+    id: 'validateUsersRegistration',
+    name: 'validateUsersRegistration',
+    on: settings['validateUsersRegistration']
+  })
+}}
