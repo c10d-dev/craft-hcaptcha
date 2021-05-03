@@ -2,7 +2,7 @@
     "name": "c10d/craft-hcaptcha",
     "description": "Integrate hCaptcha validation into your forms.",
     "type": "craft-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "keywords": [
         "craft",
         "cms",
@@ -33,7 +33,7 @@
         }
     },
     "extra": {
-        "name": "Craft hCAPTCHA",
+        "name": "hCAPTCHA for Craft CMS",
         "handle": "craft-hcaptcha",
         "developer": "Cédric Givord",
         "developerUrl": "https://c10d.dev",

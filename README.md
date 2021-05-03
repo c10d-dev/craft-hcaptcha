@@ -1,4 +1,4 @@
-# Craft hCAPTCHA plugin for Craft CMS 3.x
+# hCAPTCHA plugin for Craft CMS 3.x
 
 Integrate hCAPTCHA validation into your forms.
 
