@@ -62,6 +62,26 @@ You can even create the block yourself and only get the site key variable:
 If you want to know what options are available, see the [hCAPTCHA documentation](https://docs.hcaptcha.com/configuration).
 
 
+## Verify the hCAPTCHA
+
+On the server side, you can use this to verify that the hCAPTCHA was done:
+
+```php
+use c10d\crafthcaptcha\CraftHcaptcha;
+
+// [ ... ]
+
+$captcha = Craft::$app->getRequest()->getParam('h-captcha-response');
+$isValid = CraftHcaptcha::$plugin->hcaptcha->verify($captcha);
+if (!$isValid) {
+    // ERROR: you can push an error here
+}
+```
+
+In case of using craft-hcaptcha to validate a public user registration, just activate the toggle in
+the plugin's settings.
+
+
 ---
 
 Brought to you by [Cédric Givord](https://c10d.dev)
