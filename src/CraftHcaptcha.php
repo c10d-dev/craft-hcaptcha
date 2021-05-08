@@ -129,18 +129,22 @@ class CraftHcaptcha extends Plugin
             });
         }
 
-        if ($settings->validateUsersRegistration) {
-            Event::on(User::class, User::EVENT_BEFORE_VALIDATE, function (ModelEvent $event) {
-                /** @var User $user */
-                $user = $event->sender;
+        // Set up user registration hook.
+        if ($settings->validateUsersRegistration && Craft::$app->getRequest()->getIsSiteRequest()) {
+            $segments = Craft::$app->getRequest()->getActionSegments();
+            if (($segments[0] ?? false) !== 'users' || ($segments[1] ?? false) !== 'set-password') {
+                Event::on(User::class, User::EVENT_BEFORE_VALIDATE, function (ModelEvent $event) {
+                    /** @var User $user */
+                    $user = $event->sender;
 
-                $captcha = Craft::$app->getRequest()->getParam('h-captcha-response');
-                $isValid = CraftHcaptcha::$plugin->hcaptcha->verify($captcha);
-                if (!$isValid) {
+                    $captcha = Craft::$app->getRequest()->getParam('h-captcha-response');
+                    $isValid = CraftHcaptcha::$plugin->hcaptcha->verify($captcha);
+                    if (!$isValid) {
                     $user->addError('hcaptcha', Craft::t('craft-hcaptcha', 'Please verify you are human.'));
                     $event->isValid = false;
-                }
-            });
+                    }
+                });
+            }
         }
 
         /**
