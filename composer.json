@@ -24,8 +24,7 @@
     ],
     "require": {
         "php": "^7.2 || ^8.0",
-        "craftcms/cms": "^3.4",
-        "guzzlehttp/guzzle": "^6.5"
+        "craftcms/cms": "^3.4"
     },
     "autoload": {
         "psr-4": {

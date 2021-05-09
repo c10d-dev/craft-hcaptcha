@@ -17,8 +17,6 @@ use craft\base\Component;
 use craft\web\View;
 use craft\helpers\Template;
 
-use GuzzleHttp;
-
 
 /**
  * HcaptchaService Service
@@ -73,16 +71,24 @@ class HcaptchaService extends Component
             'response' => $data
         );
 
-        $client = new GuzzleHttp\Client();
-        $response = $client->request('POST', $this->url, ['form_params' => $params]);
-        if ($response->getStatusCode() == 200) {
-            $json = json_decode($response->getBody());
+        $curlRequest = curl_init();
+        curl_setopt($curlRequest, CURLOPT_URL, $this->url);
+        curl_setopt($curlRequest, CURLOPT_POST, true);
+        curl_setopt($curlRequest, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($curlRequest);
+        if (!curl_errno($curlRequest)) {
+            if (curl_getinfo($curlRequest, CURLINFO_HTTP_CODE) == 200) {
+                $json = json_decode($response);
 
-            if ($json->success) {
-                return true;
+                if ($json->success) {
+                    curl_close($curlRequest);
+                    return true;
+                }
             }
         }
 
+        curl_close($curlRequest);
         return false;
     }
 }
