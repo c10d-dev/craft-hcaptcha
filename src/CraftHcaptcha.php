@@ -131,20 +131,20 @@ class CraftHcaptcha extends Plugin
 
         // Set up user registration hook.
         if ($settings->validateUsersRegistration && Craft::$app->getRequest()->getIsSiteRequest()) {
-            $segments = Craft::$app->getRequest()->getActionSegments();
-            if (($segments[0] ?? false) !== 'users' || ($segments[1] ?? false) !== 'set-password') {
-                Event::on(User::class, User::EVENT_BEFORE_VALIDATE, function (ModelEvent $event) {
-                    /** @var User $user */
-                    $user = $event->sender;
+            Event::on(User::class, User::EVENT_BEFORE_VALIDATE, function (ModelEvent $event) {
+                /** @var User $user */
+                $user = $event->sender;
 
+                // Only validate captcha on new users
+                if ($user->id === null && $user->uid === null && $user->contentId === null) {
                     $captcha = Craft::$app->getRequest()->getParam('h-captcha-response');
                     $isValid = CraftHcaptcha::$plugin->hcaptcha->verify($captcha);
                     if (!$isValid) {
-                    $user->addError('hcaptcha', Craft::t('craft-hcaptcha', 'Please verify you are human.'));
-                    $event->isValid = false;
+                        $user->addError('hcaptcha', Craft::t('craft-hcaptcha', 'Please verify you are human.'));
+                        $event->isValid = false;
                     }
-                });
-            }
+                }
+            });
         }
 
         /**
