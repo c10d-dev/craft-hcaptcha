@@ -47,4 +47,6 @@ return [
     'Validate users registration?' => 'Validation des enregistrements utilisateurs ?',
     'Enable to automatically validate hCAPTCHAs when using public users registration.' => 'Activez pour automatiquement valider le hCAPTCHA lors de l\'utilisation de l\'enregistrement publique des utilisateurs.',
 
+    'Please verify you are human.' => 'Veuillez valider que vous êtes un humain.',
+
 ];
