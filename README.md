@@ -26,7 +26,7 @@ To install the plugin, follow these instructions.
 ## Configuring craft-hcaptcha
 
 1. [Sign up for hCAPTCHA API key](https://dashboard.hcaptcha.com).
-2. Open the Craft admin and go to Settings → Plugins → Craft reCAPTCHA → Settings.
+2. Open the Craft admin and go to Settings → Plugins → Craft hCAPTCHA → Settings.
 3. Add your `site key` and `secret key`, then save.
 4. Add the hCAPTCHA template tag and js to your forms.
 
@@ -61,6 +61,8 @@ You can even create the block yourself and only get the site key variable:
 
 If you want to know what options are available, see the [hCAPTCHA documentation](https://docs.hcaptcha.com/configuration).
 
+NOTE: If you’re using the CraftCMS [Contact Form](https://plugins.craftcms.com/contact-form) plugin or you're using craft-hcaptcha to validate a public user registration, just activate the corresponding toggle in the plugin's settings, you're all set!
+
 
 ## Verify the hCAPTCHA
 
@@ -77,9 +79,6 @@ if (!$isValid) {
     // ERROR: you can push an error here
 }
 ```
-
-In case of using craft-hcaptcha to validate a public user registration, just activate the toggle in
-the plugin's settings.
 
 
 ---
