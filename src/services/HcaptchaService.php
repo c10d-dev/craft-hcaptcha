@@ -11,6 +11,7 @@
 namespace c10d\crafthcaptcha\services;
 
 use c10d\crafthcaptcha\CraftHcaptcha;
+use c10d\crafthcaptcha\records\HcaptchaLogs;
 
 use Craft;
 use craft\base\Component;
@@ -70,6 +71,8 @@ class HcaptchaService extends Component
             'secret' =>  $settings->getSecretKey(),
             'response' => $data
         );
+        $log = new HcaptchaLogs();
+        $log->siteId = Craft::$app->sites->getCurrentSite()->id;
 
         $curlRequest = curl_init();
         curl_setopt($curlRequest, CURLOPT_URL, $this->url);
@@ -77,18 +80,26 @@ class HcaptchaService extends Component
         curl_setopt($curlRequest, CURLOPT_POSTFIELDS, http_build_query($params));
         curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($curlRequest);
-        if (!curl_errno($curlRequest)) {
-            if (curl_getinfo($curlRequest, CURLINFO_HTTP_CODE) == 200) {
-                $json = json_decode($response);
 
-                if ($json->success) {
-                    curl_close($curlRequest);
-                    return true;
-                }
+        if (Craft::$app->config->general->devMode) {
+            $log->requestUrl = Craft::$app->request->getUrl();
+            $log->requestBody = Craft::$app->request->getRawBody();
+            $log->captchaJson = $response;
+        }
+
+        if (!curl_errno($curlRequest) && curl_getinfo($curlRequest, CURLINFO_HTTP_CODE) == 200) {
+            $json = json_decode($response);
+            if ($json->success && $json->hostname == Craft::$app->request->hostName) {
+                curl_close($curlRequest);
+                $log->success = true;
+                $log->save(false);
+                return true;
             }
         }
 
         curl_close($curlRequest);
+        $log->success = false;
+        $log->save(false);
         return false;
     }
 }

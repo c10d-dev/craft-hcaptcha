@@ -13,14 +13,17 @@ namespace c10d\crafthcaptcha;
 use c10d\crafthcaptcha\services\HcaptchaService;
 use c10d\crafthcaptcha\variables\HcaptchaVariable;
 use c10d\crafthcaptcha\models\SettingsModel;
+use c10d\crafthcaptcha\utilities\HcaptchaUtility;
 
 use Craft;
 use craft\base\Plugin;
 use craft\contactform\models\Submission;
 use craft\elements\User;
 use craft\events\PluginEvent;
+use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterUrlRulesEvent;
 use craft\services\Plugins;
+use craft\services\Utilities;
 use craft\web\UrlManager;
 use craft\web\twig\variables\CraftVariable;
 
@@ -67,7 +70,7 @@ class CraftHcaptcha extends Plugin
      *
      * @var string
      */
-    public $schemaVersion = '1.0.0';
+    public $schemaVersion = '1.2.0';
 
     /**
      * Set to `true` if the plugin should have a settings view in the control panel.
@@ -101,6 +104,18 @@ class CraftHcaptcha extends Plugin
     {
         parent::init();
         self::$plugin = $this;
+
+        // Register our utilities
+        Event::on(
+            Utilities::class,
+            Utilities::EVENT_REGISTER_UTILITY_TYPES,
+            function (RegisterComponentTypesEvent $event) {
+		$tableSchema = Craft::$app->db->schema->getTableSchema('{{%crafthcaptcha_logs}}');
+		if ($tableSchema) {
+		    $event->types[] = HcaptchaUtility::class;
+		}
+            }
+        );
 
         // Register our variables
         Event::on(
@@ -194,7 +209,7 @@ class CraftHcaptcha extends Plugin
      *
      * @return string The rendered settings HTML
      */
-    protected function settingsHtml(): string
+    protected function settingsHtml()
     {
         return Craft::$app->view->renderTemplate(
             'craft-hcaptcha/settings',

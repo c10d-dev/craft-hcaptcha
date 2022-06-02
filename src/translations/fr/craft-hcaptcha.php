@@ -9,7 +9,7 @@
  */
 
 /**
- * craft-hcaptcha en Translation
+ * craft-hcaptcha FR translation
  *
  * Returns an array with the string to be translated (as passed to `Craft::t('craft-hcaptcha', '...')`) as
  * the key, and the translation as the value.
@@ -49,4 +49,11 @@ return [
 
     'Please verify you are human.' => 'Veuillez valider que vous êtes un humain.',
 
+    'Total count' => 'Nombre total ',
+    'Success rate' => 'Taux de succès ',
+    'Error rate' => 'Taux d\'erreur ',
+
+    'Logs' => 'Journaux',
+    'success' => 'succès',
+    'failure' => 'échec',
 ];

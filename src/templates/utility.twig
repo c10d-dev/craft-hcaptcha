@@ -1,0 +1,55 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * craft-hcaptcha plugin for Craft CMS 3.x
+ *
+ * craft-hcaptcha Utility.twig
+ *
+ * @author    Cédric Givord
+ * @copyright Copyright (c) Cédric Givord
+ * @link      https://c10d.dev
+ * @package   CraftHcaptcha
+ * @since     1.2.0
+ */
+#}
+
+<h1>hCAPTCHA</h1>
+
+<h2>{{ "Validations"|t('craft-hcaptcha') }}</h2>
+<div class="readable" style="padding-bottom: 1rem;">
+  <p>{{ "Total count"|t('craft-hcaptcha') }}: <strong>{{ total }}</strong></p>
+</div>
+
+<div class="readable" style="padding-bottom: 1rem;">
+  <p>{{ "Success rate"|t('craft-hcaptcha') }}: {{ success_rate }}%</p>
+  <div class="utility-status">
+    <div class="progressbar" style="position: relative; left: 0; width: 100%;"><div class="progressbar-inner" style="background-color: green; width: {{ success_rate }}%;"></div></div>
+  </div>
+</div>
+
+<div class="readable" style="padding-bottom: 1rem;">
+  <p>{{ "Error rate"|t('craft-hcaptcha') }}: {{ failure_rate }}%</p>
+  <div class="utility-status">
+    <div class="progressbar" style="position: relative; left: 0; width: 100%;"><div class="progressbar-inner" style="background-color: red; width: {{ failure_rate }}%;"></div></div>
+  </div>
+</div>
+
+{% if devMode and logs is defined %}
+  <hr>
+  <h2 title="(devMode only)">{{ "Logs"|t('craft-hcaptcha') }}</h2>
+  {% for log in logs %}
+    <div class="pane" style="padding: 16px;">
+      <a class="release-info fieldtoggle" data-target="log-{{ log.id }}" style="margin: 0;">
+        <h3 style="margin: 0; padding-left: 10px; display: inline;">{{ log.requestUrl }}</h3>
+        <i style="margin-left: 10px;">[{{ (log.success ? 'success' : 'failure')|t('craft-hcaptcha') }}]</i>
+        <span class="right" style="margin-left: 10px;">{{ log.dateCreated }}</span>
+      </a>
+      <div id="log-{{ log.id }}" class="hidden" style="padding: 20px;">
+        <h4>REQUEST RAW BODY</h4>
+        <p>{{ log.requestBody }}</p>
+        <h4>hCAPTCHA RESPONSE</h4>
+        <p>{{ log.captchaJson }}</p>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
