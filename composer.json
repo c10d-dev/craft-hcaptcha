@@ -2,7 +2,7 @@
     "name": "c10d/craft-hcaptcha",
     "description": "Integrate hCaptcha validation into your forms.",
     "type": "craft-plugin",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -23,8 +23,8 @@
         }
     ],
     "require": {
-        "php": "^7.2 || ^8.0",
-        "craftcms/cms": "^3.4"
+        "php": "^8.0.2",
+        "craftcms/cms": "^4.0.0"
     },
     "autoload": {
         "psr-4": {
@@ -42,5 +42,11 @@
             "hcaptcha": "c10d\\crafthcaptcha\\services\\HcaptchaService"
         },
         "class": "c10d\\crafthcaptcha\\CraftHcaptcha"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
     }
 }
