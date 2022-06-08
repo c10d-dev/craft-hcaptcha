@@ -32,4 +32,16 @@ class HcaptchaLogs extends ActiveRecord
     {
         return '{{%crafthcaptcha_logs}}';
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function save($runValidation = true, $attributeNames = null)
+    {
+	$tableSchema = Craft::$app->db->schema->getTableSchema('{{%crafthcaptcha_logs}}');
+	if ($tableSchema) {
+	    parent::save(false, $attributeNames);
+	}
+	return false;
+    }
 }

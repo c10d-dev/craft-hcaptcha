@@ -89,7 +89,7 @@ class HcaptchaService extends Component
 
         if (!curl_errno($curlRequest) && curl_getinfo($curlRequest, CURLINFO_HTTP_CODE) == 200) {
             $json = json_decode($response);
-            if ($json->success && $json->hostname == Craft::$app->request->hostName) {
+            if ($json->success) {
                 curl_close($curlRequest);
                 $log->success = true;
                 $log->save(false);

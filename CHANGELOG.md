@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.1 - 2022-06-08
+### Fixed
+- Removed hostname check because it's not reliable ([#2](https://github.com/c10d-dev/craft-hcaptcha/issues/2), thanks @lmcnearney)
+- Avoid possible crash when database table is not present
+
 ## 2.0.0 - 2022-06-01
 ### Changed
 - Now requires PHP ^8.0.2.
