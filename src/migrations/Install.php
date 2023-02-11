@@ -109,21 +109,31 @@ class Install extends Migration
             'success',
             false
         );
-        $this->createIndex(
-            $this->db->getIndexName(
-                '{{%crafthcaptcha_logs}}',
-                'requestUrl',
-                false
-            ),
-            '{{%crafthcaptcha_logs}}',
-            'requestUrl(40)',
-            false
-        );
         // Additional commands depending on the db driver
         switch ($this->driver) {
             case DbConfig::DRIVER_MYSQL:
+                $this->createIndex(
+                    $this->db->getIndexName(
+                        '{{%crafthcaptcha_logs}}',
+                        'requestUrl',
+                        false
+                    ),
+                    '{{%crafthcaptcha_logs}}',
+                    'requestUrl(40)',
+                    false
+                );
                 break;
             case DbConfig::DRIVER_PGSQL:
+                $this->createIndex(
+                    $this->db->getIndexName(
+                        '{{%crafthcaptcha_logs}}',
+                        'requestUrl',
+                        false
+                    ),
+                    '{{%crafthcaptcha_logs}}',
+                    'requestUrl',
+                    false
+                );
                 break;
         }
     }
