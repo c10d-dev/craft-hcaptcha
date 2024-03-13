@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.0 - 2024-03-12
+### Added
+- Added an environment variable to skip verification when needed
+
 ## 2.0.2 - 2023-02-11
 ### Fixed
 - Fix error installing plugin with PostgreSQL ([#5](https://github.com/c10d-dev/craft-hcaptcha/issues/5), thanks [@stuible](https://github.com/stuible))

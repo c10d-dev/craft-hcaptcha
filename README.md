@@ -61,7 +61,7 @@ You can even create the block yourself and only get the site key variable:
 
 If you want to know what options are available, see the [hCAPTCHA documentation](https://docs.hcaptcha.com/configuration).
 
-NOTE: If you’re using the CraftCMS [Contact Form](https://plugins.craftcms.com/contact-form) plugin or you're using craft-hcaptcha to validate a public user registration, just activate the corresponding toggle in the plugin's settings, you're all set!
+NOTE: After this step is done, if you’re using the CraftCMS [Contact Form](https://plugins.craftcms.com/contact-form) plugin or you're using craft-hcaptcha to validate a public user registration, just activate the corresponding toggle in the plugin's settings, you're all set! (the hcaptcha will be automatically verified on submission)
 
 
 ## Verify the hCAPTCHA

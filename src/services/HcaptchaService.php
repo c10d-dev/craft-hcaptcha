@@ -16,6 +16,7 @@ use c10d\crafthcaptcha\records\HcaptchaLogs;
 use Craft;
 use craft\base\Component;
 use craft\web\View;
+use craft\helpers\App;
 use craft\helpers\Template;
 
 
@@ -66,6 +67,10 @@ class HcaptchaService extends Component
 
     public function verify($data)
     {
+	if (App::env('CRAFT_HCAPTCHA_SKIP_VERIFICATION') ?? false) {
+            return true;
+	}
+
         $settings = CraftHcaptcha::$plugin->getSettings();
         $params = array(
             'secret' =>  $settings->getSecretKey(),
