@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-hcaptcha plugin for Craft CMS 3.x
+ * craft-hcaptcha plugin for Craft CMS
  *
  * Integrate hCAPTCHA validation into your forms.
  *
@@ -41,42 +41,42 @@ class SettingsModel extends Model
      *
      * @var string
      */
-    public $siteKey = '';
+    public string $siteKey = '';
 
     /**
      * Secret key model attribute
      *
      * @var string
      */
-    public $secretKey = '';
+    public string $secretKey = '';
 
     /**
      * Theme model attribute
      *
      * @var string
      */
-    public $theme = '';
+    public string $theme = '';
 
     /**
      * Size model attribute
      *
      * @var string
      */
-    public $size = '';
+    public string $size = '';
 
     /**
      * Validate ContactForm
      *
      * @var bool
      */
-    public $validateContactForm = false;
+    public bool $validateContactForm = false;
 
     /**
      * Validate UsersRegistration
      *
      * @var bool
      */
-    public $validateUsersRegistration = false;
+    public bool $validateUsersRegistration = false;
 
 
     // Public Methods

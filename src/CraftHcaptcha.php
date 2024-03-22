@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-hcaptcha plugin for Craft CMS 3.x
+ * craft-hcaptcha plugin for Craft CMS
  *
  * Integrate hCAPTCHA validation into your forms.
  *
@@ -16,6 +16,7 @@ use c10d\crafthcaptcha\models\SettingsModel;
 use c10d\crafthcaptcha\utilities\HcaptchaUtility;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\contactform\models\Submission;
 use craft\elements\User;
@@ -60,7 +61,7 @@ class CraftHcaptcha extends Plugin
      *
      * @var CraftHcaptcha
      */
-    public static $plugin;
+    public static CraftHcaptcha $plugin;
 
     // Public Properties
     // =========================================================================
@@ -100,7 +101,7 @@ class CraftHcaptcha extends Plugin
      * you do not need to load it in your init() method.
      *
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;
@@ -196,9 +197,9 @@ class CraftHcaptcha extends Plugin
     /**
      * Creates and returns the model used to store the plugin’s settings.
      *
-     * @return \craft\base\Model|null
+     * @return Model|null
      */
-    protected function createSettingsModel(): ?\craft\base\Model
+    protected function createSettingsModel(): ?Model
     {
         return new SettingsModel();
     }

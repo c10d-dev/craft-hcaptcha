@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-hcaptcha plugin for Craft CMS 3.x
+ * craft-hcaptcha plugin for Craft CMS
  *
  * Integrate hCAPTCHA validation into your forms.
  *
@@ -13,6 +13,7 @@ namespace c10d\crafthcaptcha\variables;
 use c10d\crafthcaptcha\CraftHcaptcha;
 
 use Craft;
+use Twig\Markup;
 
 
 /**
@@ -39,9 +40,9 @@ class HcaptchaVariable
      *
      * @param string $id
      * @param array $options
-     * @return string
+     * @return Markup
      */
-    public function render(string $id = 'hcaptcha-1', array $options = [])
+    public function render(string $id = 'hcaptcha-1', array $options = []): Markup
     {
         return CraftHcaptcha::$plugin->hcaptcha->render($id, $options);
     }
@@ -53,7 +54,7 @@ class HcaptchaVariable
      *
      * @return string
      */
-    public function sitekey()
+    public function sitekey(): ?string
     {
         $settings = CraftHcaptcha::$plugin->getSettings();
         return $settings->getSiteKey();

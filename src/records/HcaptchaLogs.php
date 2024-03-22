@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-hcaptcha plugin for Craft CMS 3.x
+ * craft-hcaptcha plugin for Craft CMS
  *
  * Integrate hCAPTCHA validation into your forms.
  *
@@ -28,7 +28,7 @@ class HcaptchaLogs extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%crafthcaptcha_logs}}';
     }
@@ -36,7 +36,7 @@ class HcaptchaLogs extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function save($runValidation = true, $attributeNames = null)
+    public function save($runValidation = true, $attributeNames = null): bool
     {
 	$tableSchema = Craft::$app->db->schema->getTableSchema('{{%crafthcaptcha_logs}}');
 	if ($tableSchema) {

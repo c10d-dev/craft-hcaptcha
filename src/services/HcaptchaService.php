@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-hcaptcha plugin for Craft CMS 3.x
+ * craft-hcaptcha plugin for Craft CMS
  *
  * Integrate hCAPTCHA validation into your forms.
  *
@@ -18,6 +18,7 @@ use craft\base\Component;
 use craft\web\View;
 use craft\helpers\App;
 use craft\helpers\Template;
+use Twig\Markup;
 
 
 /**
@@ -35,12 +36,12 @@ use craft\helpers\Template;
  */
 class HcaptchaService extends Component
 {
-    protected $url = 'https://hcaptcha.com/siteverify';
+    protected string $url = 'https://hcaptcha.com/siteverify';
 
     // Public Methods
     // =========================================================================
 
-    public function render(string $id = 'hcaptcha-1', array $options = [])
+    public function render(string $id = 'hcaptcha-1', array $options = []): Markup
     {
         $settings = CraftHcaptcha::$plugin->getSettings();
 
@@ -65,7 +66,7 @@ class HcaptchaService extends Component
         );
     }
 
-    public function verify($data)
+    public function verify($data): bool
     {
 	if (App::env('CRAFT_HCAPTCHA_SKIP_VERIFICATION') ?? false) {
             return true;

@@ -1,6 +1,6 @@
 <?php
 /**
- * craft-hcaptcha plugin for Craft CMS 3.x
+ * craft-hcaptcha plugin for Craft CMS
  *
  * Integrate hCAPTCHA validation into your forms.
  *
@@ -29,7 +29,7 @@ class Install extends Migration
     /**
      * @var string The database driver to use
      */
-    public $driver;
+    public string $driver;
 
     // Public Methods
     // =========================================================================
@@ -37,7 +37,7 @@ class Install extends Migration
     /**
      * @inheritdoc
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         $this->driver = Craft::$app->getConfig()->getDb()->driver;
         if ($this->createTables()) {
@@ -54,7 +54,7 @@ class Install extends Migration
    /**
      * @inheritdoc
      */
-    public function safeDown()
+    public function safeDown(): bool
     {
         $this->driver = Craft::$app->getConfig()->getDb()->driver;
         $this->removeTables();
@@ -68,7 +68,7 @@ class Install extends Migration
     /**
      * @return bool
      */
-    protected function createTables()
+    protected function createTables(): bool
     {
         $tablesCreated = false;
 
@@ -97,7 +97,7 @@ class Install extends Migration
     /**
      * @return void
      */
-    protected function createIndexes()
+    protected function createIndexes(): void
     {
         $this->createIndex(
             $this->db->getIndexName(
@@ -141,7 +141,7 @@ class Install extends Migration
     /**
      * @return void
      */
-    protected function addForeignKeys()
+    protected function addForeignKeys(): void
     {
         $this->addForeignKey(
             $this->db->getForeignKeyName('{{%crafthcaptcha_logs}}', 'siteId'),
@@ -157,14 +157,14 @@ class Install extends Migration
     /**
      * @return void
      */
-    protected function insertDefaultData()
+    protected function insertDefaultData(): void
     {
     }
 
     /**
      * @return void
      */
-    protected function removeTables()
+    protected function removeTables(): void
     {
         $this->dropTableIfExists('{{%crafthcaptcha_logs}}');
     }
