@@ -47,7 +47,7 @@ class HcaptchaUtility extends Utility
     /**
      * @inheritdoc
      */
-    public static function iconPath(): ?string
+    public static function icon(): ?string
     {
         return Craft::getAlias("@c10d/crafthcaptcha/icon.svg");
     }

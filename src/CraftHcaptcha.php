@@ -109,7 +109,7 @@ class CraftHcaptcha extends Plugin
         // Register our utilities
         Event::on(
             Utilities::class,
-            Utilities::EVENT_REGISTER_UTILITY_TYPES,
+            Utilities::EVENT_REGISTER_UTILITIES,
             function (RegisterComponentTypesEvent $event) {
 		$tableSchema = Craft::$app->db->schema->getTableSchema('{{%crafthcaptcha_logs}}');
 		if ($tableSchema) {
