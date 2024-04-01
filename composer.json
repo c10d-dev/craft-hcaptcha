@@ -2,7 +2,7 @@
     "name": "c10d/craft-hcaptcha",
     "description": "Integrate hCaptcha validation into your forms.",
     "type": "craft-plugin",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "keywords": [
         "craft",
         "cms",

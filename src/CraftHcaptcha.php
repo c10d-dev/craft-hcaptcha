@@ -152,7 +152,7 @@ class CraftHcaptcha extends Plugin
                 $user = $event->sender;
 
                 // Only validate captcha on new users
-                if ($user->id === null && $user->uid === null && $user->contentId === null) {
+                if ($user->id === null && $user->uid === null) {
                     $captcha = Craft::$app->getRequest()->getParam('h-captcha-response');
                     $isValid = CraftHcaptcha::$plugin->hcaptcha->verify($captcha);
                     if (!$isValid) {

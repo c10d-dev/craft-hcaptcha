@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.1 - 2024-04-01
+### Fixed
+- Fix user unknown property error
+
 ## 3.0.0 - 2024-03-28
 ### Changed
 - Updated project for Craft 5
